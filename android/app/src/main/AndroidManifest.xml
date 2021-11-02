@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.task_analysis">
    <application
-        android:label="task_analysis"
+        android:label="Task Analysis"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
