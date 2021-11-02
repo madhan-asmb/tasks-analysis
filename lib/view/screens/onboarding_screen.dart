@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_page.dart';
 
@@ -53,9 +54,14 @@ class OnBoardingPage extends StatelessWidget {
     );
   }
 
-  void goToHome(context) => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => HomePage()),
-      );
+  void goToHome(context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt("initScreen", 1);
+    print(await prefs.getInt("initScreen"));
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => HomePage()),
+    );
+  }
 
   Widget buildImage(String path) =>
       Center(child: Image.asset(path, width: 350));
