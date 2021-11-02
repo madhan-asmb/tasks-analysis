@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_analysis/helpers/app_themes.dart';
 import 'package:task_analysis/provider/home_page_provider.dart';
 
 import 'view/screens/home_page.dart';
@@ -31,10 +32,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Task Analysis',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppThemes.mountainHaze,
+      darkTheme: AppThemes.dark,
+      themeMode: Provider.of<HomePageProvider>(context).isDarkTheme
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: initScreen == 1 ? HomePage() : OnBoardingPage(),
     );
   }
