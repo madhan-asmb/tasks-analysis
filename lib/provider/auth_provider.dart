@@ -17,16 +17,17 @@ class AuthProvider with ChangeNotifier {
   // ApiResponse< List<User>>
 
   void registerUser() async {
-    final user = User(name: "madhan", gender: "male");
+    final user = User(name: "madhan-1", gender: "male",userpassword: 'madhan-1-pass');
     try {
       await TasksAnalysisDatabase.instance.createUser(user);
+      
     } catch (e) {
       print(e);
       print('something went wrong ');
     }
   }
 
-  void getRegisteredUsers() async {
+  Future getRegisteredUsers() async {
     List<User> usersList = await TasksAnalysisDatabase.instance.readAllUsers();
     print("get");
     users = usersList;
@@ -38,7 +39,7 @@ class AuthProvider with ChangeNotifier {
       _user = ApiResponse.loading('loading...');
       notifyListeners();
       User user =
-          await TasksAnalysisDatabase.instance.authenticateUser('madhan');
+          await TasksAnalysisDatabase.instance.authenticateUser('madhan-1');
 
       _user = ApiResponse.completed(user);
       notifyListeners();

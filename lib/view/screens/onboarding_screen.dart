@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_analysis/view/screens/auth_screen.dart';
 
 import 'home_page.dart';
 
@@ -37,11 +38,11 @@ class OnBoardingPage extends StatelessWidget {
           ),
         ],
         done: Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
-        onDone: () => goToHome(context),
+        onDone: () => goToAuthScreen(context),
         doneColor: blackColor,
         showSkipButton: true,
         skip: Text('Skip'),
-        onSkip: () => goToHome(context),
+        onSkip: () => goToAuthScreen(context),
         skipColor: blackColor,
         next: Icon(Icons.arrow_forward),
         nextColor: blackColor,
@@ -54,12 +55,12 @@ class OnBoardingPage extends StatelessWidget {
     );
   }
 
-  void goToHome(context) async {
+  void goToAuthScreen(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt("initScreen", 1);
     print(await prefs.getInt("initScreen"));
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => HomePage()),
+      MaterialPageRoute(builder: (_) => AuthScreen()),
     );
   }
 

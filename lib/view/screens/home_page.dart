@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_analysis/models/user_model.dart';
 import 'package:task_analysis/provider/auth_provider.dart';
+import 'package:task_analysis/provider/credit_card_provider.dart';
 import 'package:task_analysis/provider/home_page_provider.dart';
 import 'package:task_analysis/view/screens/credit_cards_screen.dart';
 import 'package:task_analysis/view/screens/notes_screen.dart';
@@ -70,6 +71,10 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _currentIndex,
         onTap: (int index) => setState(() {
           _currentIndex = index;
+          if (index == 2) {
+            Provider.of<CreditCardProvider>(context, listen: false)
+                .getAllCreditCards();
+          }
         }),
         items: [
           BottomNavigationBarItem(

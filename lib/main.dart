@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_analysis/helpers/app_themes.dart';
 import 'package:task_analysis/provider/auth_provider.dart';
+import 'package:task_analysis/provider/credit_card_provider.dart';
 import 'package:task_analysis/provider/home_page_provider.dart';
 
 import 'view/screens/auth_screen.dart';
-import 'view/screens/home_page.dart';
 import 'view/screens/onboarding_screen.dart';
 
 int initScreen = 0;
@@ -31,6 +31,9 @@ Future<void> main() async {
         ChangeNotifierProvider<HomePageProvider>(
           create: (_) => HomePageProvider(),
         ),
+        ChangeNotifierProvider<CreditCardProvider>(
+          create: (_) => CreditCardProvider(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -50,9 +53,7 @@ class MyApp extends StatelessWidget {
       themeMode: Provider.of<HomePageProvider>(context).isDarkTheme
           ? ThemeMode.dark
           : ThemeMode.light,
-      // home: initScreen == 1 ? AuthScreen() : OnBoardingPage(),
-      // home: initScreen == 1 ? HomePage() : OnBoardingPage(),
-      home: HomePage(),
+      home: initScreen == 1 ? AuthScreen() : OnBoardingPage(),
     );
   }
 }

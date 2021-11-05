@@ -63,7 +63,7 @@ void showRegisterForm(BuildContext context, {required bool isLogin}) {
                   if (isLogin) {
                     Navigator.of(context).pop();
                     await authProvider.loginUser();
-                    Provider.of<AuthProvider>(context, listen: false)
+                    await Provider.of<AuthProvider>(context, listen: false)
                         .getRegisteredUsers();
                     if (authProvider.user.status == Status.COMPLETED) {
                       Navigator.pushReplacement(
